@@ -2,7 +2,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var methodOverride = require('method-override')
-var routes = require('./controllers/burgers_controller');
+var routes = require('./controllers/burgers_controllers.js');
 var mysql = require('mysql');
 
 var burger = require ("./models/burger.js");
