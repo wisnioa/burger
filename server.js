@@ -3,15 +3,15 @@ var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var methodOverride = require('method-override')
 var routes = require('./controllers/burgers_controllers.js');
-var mysql = require('mysql');
+
 
 var burger = require ("./models/burger.js");
 
 
-var port = process.env.PORT || 3306;
+var port = process.env.PORT || 8080; 
 var app = express();
 
-app.use(express.static("public"));
+app.use(express.static("/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var exphbs = require("express-handlebars");

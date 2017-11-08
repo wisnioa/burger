@@ -2,43 +2,47 @@ var express = require("express");
 var router = express.Router();
 var burger = require("../models/burger.js");
 
-// router.post("/", function (req, res){
-
-
-module.exports = function (app){
-	app.get("/", function(req,res){
-	burger.all(function(data){
-		var allBurgers = {
-		burgers: data,
-		};
-	})
-	res.render("index", allBurgers);
-
-})
-
-
-}
-
-// router.get('/', function (req, res) {
-//   res.redirect('/index');
-// });
-
-// router.get('/index', function (req, res) {
-//   burger.all(function(data) {
-//     var burgerObject = { burgers: data };
-//     //console.log(hbsObject);
-//     res.render('index', burgerObject);
-//   });
-// });
-
-// module.exports = router;
-
-// app.post("/", function(req,res){
-	
-// })
-
-// app.update("/", function(req,res){
-	
-// })
-
-// module.exports = router;
+router.post("/", function(req, res) {
+	burger.create([
+	  "name", "devour"
+	], [
+	  req.body.name, req.body.devour
+	], function(result) {
+	  
+	  res.json({ id: result.insertId });
+	});
+  });
+  
+  router.put("/:id", function(req, res) {
+	var condition = "id = " + req.params.id;
+  
+	console.log("condition", condition);
+  
+	burger.update({
+	  devour: req.body.devour
+	}, condition, function(result) {
+	  if (result.changedRows == 0) {
+		// If no rows were changed, then the ID must not exist, so 404
+		return res.status(404).end();
+	  } else {
+		res.status(200).end();
+	  }
+	});
+  });
+  
+  router.delete("/:id", function(req, res) {
+	var condition = "id = " + req.params.id;
+  
+	burger.delete(condition, function(result) {
+	  if (result.affectedRows == 0) {
+		// If no rows were changed, then the ID must not exist, so 404
+		return res.status(404).end();
+	  } else {
+		res.status(200).end();
+	  }
+	});
+  });
+  
+  // Export routes for server.js to use.
+  module.exports = router;
+  

@@ -1,7 +1,31 @@
+<h1>Burgers</h1>
+
+<h2>Burgers Not Devoured!</h2>
+
 <ul>
   {{#each burgers}}
-    <li>{{this.burger_name}}</li>
-    <li>{{this.devoured}}</li>
-    <li>{{this.DATE}}</li>
-  {{/each}}
+    <li>{{burger_name}}</li>
+    {{!-- <li>{{devoured}}</li> --}}
+    <li>{{DATE}}</li>
+     <form action="update/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="1">
+                <button type="submit"> DEVOUR IT!</button>
+              </form>
+
+ {{/each}}
 </ul>
+
+<h2>Add a Burger</h2>
+<form class="create-form">
+  <form action="/api/burgers" method="POST">
+
+ <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+
+
+
+ <button type="submit">Add Burger</button>
+</form>
