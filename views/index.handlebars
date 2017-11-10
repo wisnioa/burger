@@ -7,13 +7,15 @@
     <li>{{burger_name}}</li>
     {{!-- <li>{{devoured}}</li> --}}
     <li>{{DATE}}</li>
-     <form action="update/{{this.id}}?_method=PUT" method="POST">
-                <input type="hidden" name="devoured" value="1">
-                <button type="submit"> DEVOUR IT!</button>
-              </form>
+     <form>
+      <input type="hidden" name="devoured" value="1">
+      <button type="submit"> DEVOUR IT!</button>
+      </form>
 
  {{/each}}
 </ul>
+
+
 
 <h2>Add a Burger</h2>
 <form class="create-form">

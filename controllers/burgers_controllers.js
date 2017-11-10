@@ -4,8 +4,6 @@ var burger = require("../models/burger.js");
 
 
 
-
-
 router.post('/', function (req, res) {
 	burger.create(
 			["burger_name", "devoured"],
@@ -15,7 +13,7 @@ router.post('/', function (req, res) {
 	});
 });
   
-router.put("/:id", function(req, res) {
+router.put("/update/:id", function(req, res) {
 	var condition = "id = " + req.params.id;
 	console.log("condition", condition);
   
