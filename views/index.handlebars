@@ -7,11 +7,9 @@
     <li>{{burger_name}}</li>
     {{!-- <li>{{devoured}}</li> --}}
     <li>{{DATE}}</li>
-     <form>
-      <input type="hidden" name="devoured" value="1">
+     <form method ="PUT" action="/api/burgers?_method=PUT" class="button-size">      <input type="hidden" name="devoured" value={{id}}>
       <button type="submit"> DEVOUR IT!</button>
       </form>
-
  {{/each}}
 </ul>
 

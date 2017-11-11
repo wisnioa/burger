@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
+app.use("/api/burgers", routes);
 
 
 app.get("/", function (req, res){
@@ -32,7 +32,7 @@ app.get("/", function (req, res){
 	});
 });
 
-app.use("/api/burgers", routes);
+
 
 app.listen(port, function() {
   console.log("listening on port", port);
