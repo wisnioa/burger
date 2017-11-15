@@ -19,29 +19,41 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-// Helper function to convert object key/value pairs to SQL syntax
+// // Helper function to convert object key/value pairs to SQL syntax
+// function objToSql(ob) {
+//   var arr = [];
+
+//   // loop through the keys and push the key/value as a string int arr
+//   for (var key in ob) {
+//     var value = ob[key];
+//     // check to skip hidden properties
+//     if (Object.hasOwnProperty.call(ob, key)) {
+//       // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+//       if (typeof value === "string" && value.indexOf(" ") >= 0) {
+//         value = "'" + value + "'";
+//       }
+//       // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+//       // e.g. {sleepy: true} => ["sleepy=true"]
+//       arr.push(key + "=" + value);
+//     }
+//   }
+
+//   // translate array of strings to a single comma-separated string
+//   return arr.toString();
+// }
+
+
+//solution:
 function objToSql(ob) {
+  // column1=value, column2=value2,...
   var arr = [];
 
-  // loop through the keys and push the key/value as a string int arr
   for (var key in ob) {
-    var value = ob[key];
-    // check to skip hidden properties
-    if (Object.hasOwnProperty.call(ob, key)) {
-      // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
-      if (typeof value === "string" && value.indexOf(" ") >= 0) {
-        value = "'" + value + "'";
-      }
-      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-      // e.g. {sleepy: true} => ["sleepy=true"]
-      arr.push(key + "=" + value);
-    }
+    arr.push(key + "=" + ob[key]);
   }
 
-  // translate array of strings to a single comma-separated string
   return arr.toString();
 }
-
 // Object for all our SQL statement functions.
 var orm = {
   all: function(tableInput, cb) {
@@ -75,11 +87,12 @@ var orm = {
   },
   // An example of objColVals would be {name: panther, sleepy: true}
   update: function(table, objColVals, condition, cb) {
-    var queryString = "UPDATE " + table;
-
+    console.log("condition on orm" + condition)
+    var queryString = "UPDATE burgers";
+    // console.log("obj columns = " + "devoured")
     queryString += " SET ";
-    queryString += objToSql(objColVals);
-    queryString += " WHERE ";
+    queryString += "devoured = 1";
+    queryString += " WHERE id=";
     queryString += condition;
 
     console.log(queryString);
