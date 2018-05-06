@@ -1,4 +1,4 @@
-import { connect } from "http2";
+
 
 var mysql = require("mysql");
 
